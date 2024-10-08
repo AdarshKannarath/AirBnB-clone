@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "./Image";
 
 export default function PlaceGallery({ place }) {
     const [showAllPhotos, setShowAllPhotos] = useState(false);
@@ -18,7 +19,7 @@ export default function PlaceGallery({ place }) {
                     </div>
                     {place?.photos?.length > 0 && place.photos.map((photo, index) => (
                         <div key={index}>
-                            <img src={'http://localhost:4000/uploads/' + photo} alt={place.title} className="w-full h-auto object-cover" />
+                            <Image src={photo} alt={place.title} className="w-full h-auto object-cover" />
                         </div>
                     ))}
                 </div>
@@ -32,10 +33,10 @@ export default function PlaceGallery({ place }) {
                 <div className="col-span-2 row-span-2">
                     {place.photos?.[0] && (
                         <div className="h-full w-full">
-                            <img
+                            <Image
                                 onClick={() => setShowAllPhotos(true)}
                                 className="w-full h-full cursor-pointer object-cover"
-                                src={'http://localhost:4000/uploads/' + place.photos[0]}
+                                src={place.photos[0]}
                                 alt={place.title}
                                 onError={(e) => { e.target.onerror = null; e.target.src = 'path/to/default-image.jpg'; }} // Fallback image
                             />
@@ -44,10 +45,10 @@ export default function PlaceGallery({ place }) {
                 </div>
                 {place.photos?.slice(1, 5).map((photo, index) => (
                     <div key={index} className="h-48 w-full">
-                        <img
+                        <Image
                             onClick={() => setShowAllPhotos(true)}
                             className="w-full h-full cursor-pointer object-cover"
-                            src={'http://localhost:4000/uploads/' + photo}
+                            src={photo}
                             alt={place.title}
                             onError={(e) => { e.target.onerror = null; e.target.src = 'path/to/default-image.jpg'; }} // Fallback image
                         />

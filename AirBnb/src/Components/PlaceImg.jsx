@@ -1,3 +1,5 @@
+import Image from "./Image";
+
 export default function PlaceImg({ place,index=0, className = null }) {
     console.log(place)
     if (!place.photos?.length) {
@@ -7,6 +9,6 @@ export default function PlaceImg({ place,index=0, className = null }) {
         className = 'object-cover object-top w-full h-full';
     }
     return (
-        <img className={className} src={'http://localhost:4000/uploads/'+place.photos[index]} alt="" />
+        <Image className={className} src={place.photos[index]} alt="" />
     );
 }
